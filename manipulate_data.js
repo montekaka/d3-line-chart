@@ -1,5 +1,4 @@
-d3.csv("data.csv", function(data) {
-	d3.csv("dataMM.csv", function(mm_data){
+var date_crunch = function(data){
 	var datasets = [];
 	var incurred_months = [];
 	var auth_admits = [];	
@@ -31,29 +30,6 @@ d3.csv("data.csv", function(data) {
 		incurred_months[i] = datasets[i].incurred_month;
 		auth_admits[i] = datasets[i].auth_admit;
 	}
-	console.log(datasets[12]);
 
-	x.domain(d3.extent(datasets, function(d) { return d.incurred_month; }));
-	y.domain(d3.extent(datasets, function(d) { return d.auth_admit; }));
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Price ($)");
-
-  svg.append("path")
-      .datum(datasets)
-      .attr("class", "line")
-      .attr("d", line);			
-	});
-});
+	return datasets;
+}
